@@ -1,0 +1,541 @@
+openapi: 3.0.0
+info:
+  title: Eclipse aeriOS Management Portal Backend API
+  description: API specification for the Eclipse aeriOS Management Portal Backend services
+  version: 1.0.0
+servers:
+  - url: /portal-backend
+paths:
+  /continuumdata/domains/{domainId}:
+    get:
+      tags:
+        - Continuum data
+      summary: Get domain by ID
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /continuumdata/domains:
+    get:
+      tags:
+        - Continuum data
+      summary: Get all domains
+      responses:
+        "200":
+          description: Successful response
+  /continuumdata/domains/entrypoint:
+    get:
+      tags:
+        - Continuum data
+      summary: Get the entrypoint domain
+      responses:
+        "200":
+          description: Successful response
+  /continuumdata/domains/{domainId}/infrastructure-elements:
+    get:
+      tags:
+        - Continuum data
+      summary: Get infrastructure elements for a domain
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /continuumdata/infrastructure-elements/{ieId}:
+    get:
+      tags:
+        - Continuum data
+      summary: Get infrastructure element by ID
+      parameters:
+        - name: ieId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /continuumdata/infrastructure-elements:
+    get:
+      tags:
+        - Continuum data
+      summary: Get all infrastructure elements
+      responses:
+        "200":
+          description: Successful response
+  /deployments:
+    post:
+      tags:
+        - Deployments
+      summary: Deploy a new service
+      responses:
+        "200":
+          description: Successful response
+  /deployments/yaml:
+    post:
+      tags:
+        - Deployments
+      summary: Generate the TOSCA for a new service deployment
+      responses:
+        "200":
+          description: Successful response
+  /deployments/services:
+    get:
+      tags:
+        - Deployments
+      summary: Get all services
+      responses:
+        "200":
+          description: Successful response
+  /deployments/services/{id}/components:
+    get:
+      tags:
+        - Deployments
+      summary: Get service components
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /deployments/services/{id}:
+    get:
+      tags:
+        - Deployments
+      summary: Get service by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    put:
+      tags:
+        - Deployments
+      summary: Reorchestrate a service
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    delete:
+      tags:
+        - Deployments
+      summary: Delete service by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /deployments/services/{id}/clear:
+    delete:
+      tags:
+        - Deployments
+      summary: Delete permanently service by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /self/{ieId}/optimization/anomaly/parameters/{type}:
+    get:
+      tags:
+        - IEs Self-* capabilities
+      summary: Get anomaly parameters
+      parameters:
+        - name: ieId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    put:
+      tags:
+        - IEs Self-* capabilities
+      summary: Update anomaly parameters
+      parameters:
+        - name: ieId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /benchmarking/{benchmarkType}/{ieId}:
+    post:
+      tags:
+        - Benchmarking
+      summary: Run benchmarking
+      parameters:
+        - name: benchmarkType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: ieId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /benchmarking/{benchmarkId}:
+    get:
+      tags:
+        - Benchmarking
+      summary: Get benchmark by ID
+      parameters:
+        - name: benchmarkId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /benchmarking/list/{ieId}:
+    get:
+      tags:
+        - Benchmarking
+      summary: List benchmarks for an infrastructure element
+      parameters:
+        - name: ieId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /benchmarking/cpu/fromGeekbenchUrl:
+    post:
+      tags:
+        - Benchmarking
+      summary: Run CPU benchmark from Geekbench URL
+      responses:
+        "200":
+          description: Successful response
+  /benchmarking/kpis:
+    get:
+      tags:
+        - Benchmarking
+      summary: Get all KPIs
+      responses:
+        "200":
+          description: Successful response
+  /benchmarking/kpis/{kpi}:
+    get:
+      tags:
+        - Benchmarking
+      summary: Get KPI by name
+      parameters:
+        - name: kpi
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+  /notifications:
+    post:
+      tags:
+        - Notifications
+      summary: Create a new notification
+      responses:
+        "200":
+          description: Notification created successfully
+    get:
+      tags:
+        - Notifications
+      summary: Get all notifications
+      responses:
+        "200":
+          description: Successful response
+  /notifications/benchmark:
+    post:
+      tags:
+        - Notifications
+      summary: Create a benchmark notification
+      responses:
+        "200":
+          description: Benchmark notification created successfully
+  /notifications/{notificationId}:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification by ID
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    delete:
+      tags:
+        - Notifications
+      summary: Delete notification by ID
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Notification deleted successfully
+  /notifications/clear:
+    delete:
+      tags:
+        - Notifications
+      summary: Clear all notifications
+      responses:
+        "200":
+          description: All notifications cleared successfully
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      responses:
+        "200":
+          description: User created successfully
+    get:
+      tags:
+        - Users
+      summary: Get all users
+      responses:
+        "200":
+          description: Successful response
+  /users/{uid}:
+    get:
+      tags:
+        - Users
+      summary: Get user by ID
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    put:
+      tags:
+        - Users
+      summary: Update user
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    delete:
+      tags:
+        - Users
+      summary: Delete user by ID
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User deleted successfully
+  /roles:
+    post:
+      tags:
+        - Roles
+      summary: Create a new role
+      responses:
+        "200":
+          description: Role created successfully
+    get:
+      tags:
+        - Roles
+      summary: Get all roles
+      responses:
+        "200":
+          description: Successful response
+  /roles/{cn}:
+    get:
+      tags:
+        - Roles
+      summary: Get role by name
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    delete:
+      tags:
+        - Roles
+      summary: Delete role by name
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Role deleted successfully
+    put:
+      tags:
+        - Roles
+      summary: Update role
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Role updated successfully
+  /roles/{cn}/{memberuid}:
+    delete:
+      tags:
+        - Roles
+      summary: Remove member from role
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: memberuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Member removed successfully
+  /groups:
+    post:
+      tags:
+        - Groups
+      summary: Create a new group
+      responses:
+        "200":
+          description: Group created successfully
+    get:
+      tags:
+        - Groups
+      summary: Get all groups
+      responses:
+        "200":
+          description: Successful response
+  /groups/{cn}:
+    get:
+      tags:
+        - Groups
+      summary: Get group by name
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+    delete:
+      tags:
+        - Groups
+      summary: Delete group by name
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Group deleted successfully
+    put:
+      tags:
+        - Groups
+      summary: Update group
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Group updated successfully
+  /groups/{cn}/{memberuid}:
+    delete:
+      tags:
+        - Groups
+      summary: Remove member from group
+      parameters:
+        - name: cn
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: memberuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Member removed successfully

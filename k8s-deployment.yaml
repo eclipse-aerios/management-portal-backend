@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: management-portal-backend
+  name: management-portal-backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: management-portal-backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: management-portal-backend
+    spec:
+      # imagePullSecrets:
+      #   - name: aerios-dev-registry-secret
+      containers:
+        - name: backend
+          image: <eclipse-aerios-container-registry>/management-portal/backend:1.2.2
+          ports:
+            - containerPort: 8080
+              name: api
+              protocol: TCP
+            - containerPort: 8082
+              name: notifications
+              protocol: TCP
+          env:
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: SECURITY_LOG_LEVEL
+              value: "DEBUG"
+            - name: LDAP_LOG_LEVEL
+              value: "DEBUG"
+            - name: ORION_URL
+              value: "http://orion-ld-broker.default.svc.cluster.local:1026/ngsi-ld/v1/entities"
+            - name: KEYCLOAK_URL
+              value: "https://keycloak.aerios-project.eu"
+            - name: KEYCLOAK_REALM
+              value: "keycloak-openldap"
+            - name: HLO_FE_URL
+              value: "http://hlo-fe-service.default.svc.cluster.local:8081"
+            - name: ENTRYPOINT_BALANCER_URL
+              value: "http://entrypoint-balancer-api.default.svc.cluster.local:8080"
+            - name: ENTRYPOINT_BALANCER
+              value: "true"
+            - name: LDAP_URL
+              value: "ldap://openldap.default.svc.cluster.local:389"
+            - name: LDAP_USERNAME
+              value: "cn=admin,dc=example,dc=org"
+            - name: LDAP_PASSWORD
+              value: "Your@Passw0rd"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: management-portal-backend
+  name: management-portal-backend
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+    - name: api
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: notifications
+      port: 8082
+      protocol: TCP
+      targetPort: 8082
+  selector:
+    app.kubernetes.io/component: management-portal-backend
