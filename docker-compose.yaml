@@ -1,15 +1,15 @@
 services:
   portal-backend:
-    image: <eclipse-aerios-container-registry>/management-portal/backend:1.2.2
+    image: eclipseaerios/management-portal-backend:1.2.2
     ports:
       - 8080:8080
     environment:
       - LOG_LEVEL=DEBUG
       - SECURITY_LOG_LEVEL=DEBUG
       - LDAP_LOG_LEVEL=DEBUG
-      - ORION_URL=http://orion-url:1026/ngsi-ld/v1/entities
+      - ORION_URL=http://orion-ld-url:1026/ngsi-ld/v1/entities
       - KEYCLOAK_URL=https://keycloak.aerios-project.eu
-      - KEYCLOAK_REALM=keycloak-openldap
+      - KEYCLOAK_REALM=keycloak-realm
       - HLO_FE_URL=http://hlo-fe-service:8081
       - ENTRYPOINT_BALANCER_URL=http://entrypoint-balancer-api:8080
       - ENTRYPOINT_BALANCER=true
