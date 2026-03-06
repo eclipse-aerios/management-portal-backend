@@ -15,11 +15,9 @@ spec:
       labels:
         app.kubernetes.io/component: management-portal-backend
     spec:
-      # imagePullSecrets:
-      #   - name: aerios-dev-registry-secret
       containers:
         - name: backend
-          image: <eclipse-aerios-container-registry>/management-portal/backend:1.2.2
+          image: eclipseaerios/management-portal-backend:1.2.2
           ports:
             - containerPort: 8080
               name: api
