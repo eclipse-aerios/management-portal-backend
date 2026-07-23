@@ -46,7 +46,7 @@ docker build -t <eclipse-aerios-container-registry>/management-portal/backend:<a
 
 For instance:
 ```bash
-docker build -t <eclipse-aerios-container-registry>/management-portal/backend:1.2.2 --build-arg APP_VERSION=1.2.2 .
+docker build -t eclipseaerios/management-portal/backend:1.3.0 --build-arg APP_VERSION=1.3.0 .
 ```
 
 ## Configuration

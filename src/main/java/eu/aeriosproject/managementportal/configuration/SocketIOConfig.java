@@ -21,7 +21,7 @@ public class SocketIOConfig {
     private final SocketIOServer server;
     Logger logger = LoggerFactory.getLogger(SocketIOConfig.class);
 
-    public SocketIOConfig(@Value("${KEYCLOAK_URL:https://keycloak.aerios-project.eu}") String keycloakUrl, @Value("${KEYCLOAK_REALM:keycloack-openldap}") String keycloakRealm, String keycloakRealmPath, String keycloakTokenValidationPath) {
+    public SocketIOConfig(@Value("${KEYCLOAK_URL:https://keycloak.aerios-project.eu}") String keycloakUrl, @Value("${KEYCLOAK_REALM:keycloak-realm}") String keycloakRealm, String keycloakRealmPath, String keycloakTokenValidationPath) {
         // SocketIO configuration
         Configuration config = new Configuration();
         config.setHostname("0.0.0.0");

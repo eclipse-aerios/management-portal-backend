@@ -1,6 +1,6 @@
 services:
   portal-backend:
-    image: eclipseaerios/management-portal-backend:1.2.2
+    image: eclipseaerios/management-portal-backend:1.3.0
     ports:
       - 8080:8080
     environment:

@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:21-jre-alpine
 LABEL org.opencontainers.image.authors="aerios-project"
 ARG APP_VERSION
 

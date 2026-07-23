@@ -25,7 +25,7 @@ public class SecurityConfig {
     private final KeycloakJwtTokenConverter keycloakJwtTokenConverter;
     Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-    public SecurityConfig(TokenConverterProperties properties, @Value("${KEYCLOAK_URL:https://keycloak.aerios-project.eu}") String keycloakUrl, @Value("${KEYCLOAK_REALM:keycloack-openldap}") String keycloakRealm, String keycloakRealmPath, String keycloakTokenCertsPath) {
+    public SecurityConfig(TokenConverterProperties properties, @Value("${KEYCLOAK_URL:https://keycloak.aerios-project.eu}") String keycloakUrl, @Value("${KEYCLOAK_REALM:keycloak-realm}") String keycloakRealm, String keycloakRealmPath, String keycloakTokenCertsPath) {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         this.keycloakJwtTokenConverter = new KeycloakJwtTokenConverter(jwtGrantedAuthoritiesConverter, properties);
         // Set Keycloak token validation URL

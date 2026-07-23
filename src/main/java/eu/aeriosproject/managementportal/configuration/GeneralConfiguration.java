@@ -19,7 +19,7 @@ public class GeneralConfiguration {
 
     @Bean
     public String keycloakRealmPath() {
-        return "/auth/realms/";
+        return "/realms/";
     }
     @Bean
     public String keycloakTokenValidationPath() {
